@@ -4,11 +4,48 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <filter>
+  	<filter-name>AllFilter</filter-name>
+  	<display-name>AllFilter</display-name>
+  	<description></description>
+  	<filter-class>courtFilter.AllFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>AllFilter</filter-name>
+  	<url-pattern>/AllFilter</url-pattern>
+  </filter-mapping>
+  <listener>
+  	<listener-class>court.servlet.InitListener</listener-class>
+  </listener>
   <servlet>
   	<servlet-name>Rervse</servlet-name>
   	<display-name>Rervse</display-name>
   	<description></description>
-  	<servlet-class>control.Rervse</servlet-class>
+  	<servlet-class>court.servlet.Rervse</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>LogIn</servlet-name>
+  	<display-name>LogIn</display-name>
+  	<description></description>
+  	<servlet-class>court.servlet.LogIn</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>LogOn</servlet-name>
+  	<display-name>LogOn</display-name>
+  	<description></description>
+  	<servlet-class>court.servlet.LogOn</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>UserInfo</servlet-name>
+  	<display-name>UserInfo</display-name>
+  	<description></description>
+  	<servlet-class>court.servlet.UserInfo</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>CourtInfo</servlet-name>
+  	<display-name>CourtInfo</display-name>
+  	<description></description>
+  	<servlet-class>court.servlet.CourtInfo</servlet-class>
   </servlet>
   <servlet>
   	<servlet-name>teacherApplyCurriculum</servlet-name>
@@ -53,5 +90,21 @@
   <servlet-mapping>
   	<servlet-name>StudentSelectCurriculum</servlet-name>
   	<url-pattern>/StudentSelectCurriculum</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+  	<servlet-name>LogIn</servlet-name>
+  	<url-pattern>/LogIn</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>LogOn</servlet-name>
+  	<url-pattern>/LogOn</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UserInfo</servlet-name>
+  	<url-pattern>/UserInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>CourtInfo</servlet-name>
+  	<url-pattern>/CourtInfo</url-pattern>
   </servlet-mapping>
 </web-app>
