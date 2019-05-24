@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function returnCurriculum(state)
+	{
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.open("GET","AdminVerifyApply?event=" + state,true);
+		xmlHttp.send();
+		
+		var h = document.getElementById("headline");
+		if(state == "wait")
+			h.innerHTML = "等待审核课程";
+		else if(state == "pass")
+			h.innerHTML = "已审核通过课程";
+		else if(state == "notpass")
+			h.innerHTML = "未审核通过课程";
+		else if(state == "all")
+			h.innerHTML = "所有课程";
+		
+		xmlHttp.onreadystatechange = function()
+		{
+			if(xmlHttp.readyState == 4 && xmlHttp.status == 200)
+				document.getElementById("curriculum").innerHTML = xmlHttp.responseText;
+		}
+		
+		
+	}
+	
+	
+	function modifypassstate(curriculumId)
+	{
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.open("POST","AdminVerifyApply",true);
+		xmlHttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xmlHttp.send("event=pass&curriculumId=" + curriculumId);
+		
+		xmlHttp.onreadystatechange = function()
+		{
+			if(xmlHttp.readyState == 4 && xmlHttp.status == 200)
+			{
+				alert(xmlHttp.responseText);
+				if(document.getElementById("headline").innerHTML == "等待审核课程")
+					document.getElementById("waitForVerify").onclick();
+				else if(document.getElementById("headline").innerHTML == "等待审核课程")
+					document.getElementById("all").onclick();			
+			}
+		}
+	}
+	
+	function modifynotstate(curriculumId)
+	{
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.open("POST","AdminVerifyApply",true);
+		xmlHttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xmlHttp.send("event=notpass&curriculumId=" + curriculumId);
+		
+		xmlHttp.onreadystatechange = function()
+		{
+			if(xmlHttp.readyState == 4 && xmlHttp.status == 200)
+			{
+				alert(xmlHttp.responseText);
+				if(document.getElementById("headline").innerHTML == "等待审核课程")
+					document.getElementById("waitForVerify").onclick();
+				else if(document.getElementById("headline").innerHTML == "等待审核课程")
+					document.getElementById("all").onclick();			
+			}
+		}
+	}
+</script>
+
+
+</head>
+<body>
+	<h1 id="headline"></h1>
+	<button id="waitForVerify" onclick="returnCurriculum('wait')">等待审核</button><pre>    </pre>
+	<button id="passVerify" onclick="returnCurriculum('pass')">已审核通过</button>
+	<button id="notpassVerify" onclick="returnCurriculum('notpass')">未审核通过</button>
+	<button id="all" onclick="returnCurriculum('all')">所有课程</button>
+	<div id="curriculum">
+		
+	</div>
+</body>
+</html>

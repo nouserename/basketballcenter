@@ -30,7 +30,7 @@ public class User {
 	
 	
 	private int id;
-	private int password;
+	private String password;
 	private String nameString;
 	private int state;
 	/**
@@ -48,13 +48,13 @@ public class User {
 	/**
 	 * @return the password
 	 */
-	public int getPassword() {
+	public String getPassword() {
 		return password;
 	}
 	/**
 	 * @param password the password to set
 	 */
-	public void setPassword(int password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 	/**

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+	function selectedCurriculum()
+	{
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.open("GET","TeacherApplyCurriculum",true);
+		xmlhttp.send();
+		
+		xmlhttp.onreadystatechange = function()
+		{
+			if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+				document.getElementById("teacherBottom").innerHTML = xmlhttp.responseText;
+		}
+	}
+
+
+	function submitForm()
+	{
+		if(document.getElementById("weekdayFirst").value == "nothing1")
+			{alert("工作日不能为空！");return false;}
+		if(document.getElementById("whichClassSecond").value == "nothing2")
+			{alert("时间不能为空！");return false;}
+		if(document.getElementById("teacherNameText").value == "")
+			{alert("老师名字不能为空！");return false;}
+		if(document.getElementById("curriculumNameText").value == "")
+			{alert("课程名称不能为空");return false;}
+		if(document.getElementById("curriculumOverviewText").value == "")
+			{alert("课程简介不能为空！");return false;}
+		if(document.getElementById("accomodateNumberText").value == "")
+			{alert("可容纳学生数量不能为空！");return false;}
+		
+		var httpOrders = new XMLHttpRequest();
+		httpOrders.open("POST","TeacherApplyCurriculum",true);
+		httpOrders.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		httpOrders.send("weekday="+document.getElementById("weekdayFirst").value + "&whichClass=" + document.getElementById("whichClassSecond").value
+				         + "&teacherName=" + document.getElementById("teacherNameText").value + "&curriculumName=" + document.getElementById("curriculumNameText").value
+				         + "&curriculumOverview=" + document.getElementById("curriculumOverviewText").value + "&accomodateNumber=" + document.getElementById("accomodateNumberText").value);
+	
+		httpOrders.onreadystatechange = function(){
+			if(httpOrders.readyState == 4 && httpOrders.status == 200){
+					alert(httpOrders.responseText);
+					selectedCurriculum()
+				}
+			}
+	}
+	
+
+</script>
+</head>
+<body onload="selectedCurriculum()">
+		<label>工作日：</label>
+		<select id="weekdayFirst" name="weekday">
+			<option value="nothing1">--请选择时间--</option>
+			<option value="1">周一</option>
+			<option value="2">周二</option>
+			<option value="3">周三</option>
+			<option value="4">周四</option>
+			<option value="5">周五</option>
+		</select>
+		<pre>        </pre>
+		<label>时间：</label>
+		<select id="whichClassSecond" name="whichClass">
+			<option value="nothing2">--请选择时间--</option>
+			<option value="1">8:00--9:35</option>
+			<option value="2">9:55--11:30</option>
+			<option value="3">1:30--3:05</option>
+			<option value="4">3:25--5:00</option>
+		</select>
+		<br><br>
+		<label class="teacherInput">老师名字：<input type="text" name="teacherName" id="teacherNameText"></label>
+		<br>
+		<label class="teacherInput">课程名称：<input type="text" name="curriculumName" id="curriculumNameText"></label>
+		<br>
+		<label class="teacherInput">课程简介：<input type="text" name="curriculumOverview" id="curriculumOverviewText"></label>
+		<br>
+		<label class="teacherInput">可容纳学生数量：<input type="text" name="accomodateNumber" oninput="value=value.replace(/[^\d]/g,'')" id="accomodateNumberText"></label>
+		<br>
+		<input type="button"id="submit" onclick="submitForm()" value="提交"><pre>   </pre><input type="reset" id="reset" value="重置">
+	<div id="teacherBottom">
+	
+	</div>
+</body>
+</html>

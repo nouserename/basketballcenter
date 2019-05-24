@@ -10,8 +10,48 @@
   	<description></description>
   	<servlet-class>control.Rervse</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>teacherApplyCurriculum</servlet-name>
+  	<display-name>teacherApplyCurriculum</display-name>
+  	<description></description>
+  	<servlet-class>curriculum.teacherApplyCurriculum</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>TeacherApplyCurriculum</servlet-name>
+  	<display-name>TeacherApplyCurriculum</display-name>
+  	<description></description>
+  	<servlet-class>curriculum.TeacherApplyCurriculum</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>AdminVerifyApply</servlet-name>
+  	<display-name>AdminVerifyApply</display-name>
+  	<description></description>
+  	<servlet-class>curriculum.AdminVerifyApply</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>StudentSelectCurriculum</servlet-name>
+  	<display-name>StudentSelectCurriculum</display-name>
+  	<description></description>
+  	<servlet-class>curriculum.StudentSelectCurriculum</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>Rervse</servlet-name>
   	<url-pattern>/Rervse</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>teacherApplyCurriculum</servlet-name>
+  	<url-pattern>/teacherApplyCurriculum</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>TeacherApplyCurriculum</servlet-name>
+  	<url-pattern>/TeacherApplyCurriculum</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AdminVerifyApply</servlet-name>
+  	<url-pattern>/AdminVerifyApply</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>StudentSelectCurriculum</servlet-name>
+  	<url-pattern>/StudentSelectCurriculum</url-pattern>
   </servlet-mapping>
 </web-app>

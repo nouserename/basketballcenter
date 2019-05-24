@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body onload="selectCurriculum('all')">
+	<label>工作日：</label>
+		<select id="weekday" onchange="selectCurriculum('part')">
+			<option value="monday">周一</option>
+			<option value="tuesday">周二</option>
+			<option value="wednesday">周三</option>
+			<option value="thursday">周四</option>
+			<option value="friday">周五</option>
+		</select>
+		<pre>        </pre>
+		<label>时间：</label>
+		<select id="whichClass" onchange="selectCurriculum('part')">
+			<option value="curriculum1">8:00--9:35</option>
+			<option value="curriculum2">9:55--11:30</option>
+			<option value="curriculum3">1:30--3:05</option>
+			<option value="curriculum4">3:25--5:00</option>
+		</select>
+	<div id="allOfCurriculums">
+	
+	</div>
+	<div id="selectedCurriculum">
+	
+	</div>
+</body>
+</html>
