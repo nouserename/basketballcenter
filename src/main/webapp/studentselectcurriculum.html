@@ -3,23 +3,167 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<script type="text/javascript">
+
+	function yixuankecheng()
+	{
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.open("GET","StudentSelectCurriculum?state=yixuankecheng",true);
+		xmlHttp.send();
+		
+		xmlHttp.onreadystatechange = function()
+		{
+			if(xmlHttp.readyState == 4 && xmlHttp.status == 200)
+			{
+				document.getElementById("selectedCurriculum").innerHTML = xmlHttp.responseText;			
+			}
+		}
+	}
+
+	function allCurriculum()
+	{
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.open("GET","StudentSelectCurriculum?state=all",true);
+		xmlHttp.send();
+		
+		xmlHttp.onreadystatechange = function()
+		{
+			if(xmlHttp.readyState == 4 && xmlHttp.status == 200)
+			{
+				document.getElementById("allOfCurriculums").innerHTML = xmlHttp.responseText;
+				document.getElementById("signal").innerHTML = "全部课程";
+			}
+		}
+	}
+	
+	function selectCurriculum()
+	{
+		var weekday = document.getElementById("weekday").value;
+		var whichClass = document.getElementById("whichClass").value;
+		if(weekday == "void")
+		{
+			alert("请选择星期");
+			return;
+		}
+		if(whichClass == "void")
+		{
+			alert("请选择课堂");
+			return;
+		}
+		
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.open("GET","StudentSelectCurriculum?state=part&weekday=" + weekday + "&whichClass=" + whichClass,true);
+		xmlHttp.send();
+		
+		xmlHttp.onreadystatechange = function()
+		{
+			if(xmlHttp.readyState == 4 && xmlHttp.status == 200)
+			{
+				document.getElementById("allOfCurriculums").innerHTML = xmlHttp.responseText;
+				document.getElementById("signal").innerHTML = weekday + "周第" + whichClass + "堂课程";	
+			}
+		}
+		
+	}
+	
+	
+	function tiaoxuankecheng(curriculumId)
+	{
+		if(confirm("确定挑选该课程吗？") == true)
+		{
+			var xmlHttp = new XMLHttpRequest();
+			xmlHttp.open("Get","StudentSelectCurriculum?state=xuanke&curriculumId=" + curriculumId);
+			xmlHttp.send();
+			
+			xmlHttp.onreadystatechange = function()
+			{
+				if(xmlHttp.readyState == 4 && xmlHttp.status == 200)
+				{
+					alert(xmlHttp.responseText);
+					//刷新页面
+					if(document.getElementById("signal").innerHTML == "全部课程")
+					{
+						yixuankecheng();
+						allCurriculum();
+						//document.getElementById("selectedCurriculumButton").onclick();
+						//document.getElementById("allCurriculumButton").onclick();
+					}
+					else{
+						yixuankecheng();
+						selectCurriculum();
+						//document.getElementById("selectedCurriculumButton").onclick();
+						//document.getElementById("selectCurriculumButton").onclick;
+					}
+						
+				}
+			}
+		}else
+			return false;
+		
+	}
+	
+	
+	
+	function shanchukecheng(curriculumId)
+	{
+		if(confirm("确定删除该课程？") == true)
+		{
+			var xmlHttp = new XMLHttpRequest;
+			xmlHttp.open("GET","StudentSelectCurriculum?state=shanchukecheng&curriculumId=" + curriculumId,true);
+			xmlHttp.send();
+			
+			xmlHttp.onreadystatechange = function()
+			{
+				if(xmlHttp.readyState == 4 && xmlHttp.status == 200)
+				{
+					alert(xmlHttp.responseText);
+					if(document.getElementById("signal").innerHTML == "全部课程")
+					{
+						allCurriculum();
+						yixuankecheng();
+						//document.getElementById("selectedCurriculumButton").onclick();
+						//document.getElementById("allCurriculumButton").onclick();
+					}
+					else{
+						yixuankecheng();
+						selectCurriculum();
+						//document.getElementById("selectedCurriculumButton").onclick();
+						//document.getElementById("selectCurriculumButton").onclick;
+					}
+				}
+			}
+		}else
+			return false;
+	}
+
+</script>
+
 </head>
-<body onload="selectCurriculum('all')">
+<body onload="yixuankecheng()">
+	<button id="allCurriculumButton" onclick="allCurriculum()">全部课程</button>
+	<button id="selectedCurriculumButton" onclick="yixuankecheng()">已选课程</button>
+	<button id="selectCurriculumButton" onclick="selectCurriculum()" style="display:none">挑选课程</button>
+	<br>
+	<h1 id="signal"></h1>
+	<br>
 	<label>工作日：</label>
-		<select id="weekday" onchange="selectCurriculum('part')">
-			<option value="monday">周一</option>
-			<option value="tuesday">周二</option>
-			<option value="wednesday">周三</option>
-			<option value="thursday">周四</option>
-			<option value="friday">周五</option>
+		<select id="weekday" onchange="selectCurriculum()">
+			<option value="void">选择星期</option>
+			<option value="1">周一</option>
+			<option value="2">周二</option>
+			<option value="3">周三</option>
+			<option value="4">周四</option>
+			<option value="5">周五</option>
 		</select>
-		<pre>        </pre>
-		<label>时间：</label>
-		<select id="whichClass" onchange="selectCurriculum('part')">
-			<option value="curriculum1">8:00--9:35</option>
-			<option value="curriculum2">9:55--11:30</option>
-			<option value="curriculum3">1:30--3:05</option>
-			<option value="curriculum4">3:25--5:00</option>
+	<br>
+	<label>时间：</label>
+		<select id="whichClass" onchange="selectCurriculum()">
+			<option value="void">选择课堂</option>
+			<option value="1">8:00--9:35</option>
+			<option value="2">9:55--11:30</option>
+			<option value="3">1:30--3:05</option>
+			<option value="4">3:25--5:00</option>
 		</select>
 	<div id="allOfCurriculums">
 	

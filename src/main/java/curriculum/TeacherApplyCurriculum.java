@@ -80,12 +80,6 @@ public class TeacherApplyCurriculum extends HttpServlet {
 		String curriculumName = request.getParameter("curriculumName");
 		String curriculumOverview = request.getParameter("curriculumOverview");
 		String accomodateNumber = request.getParameter("accomodateNumber");
-		System.out.println(weekday);
-		System.out.println(whichClass);
-		System.out.println(teacherName);
-		System.out.println(curriculumName);
-		System.out.println(curriculumOverview);
-		System.out.println(accomodateNumber);
 		
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter writer = response.getWriter();

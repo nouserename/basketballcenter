@@ -29,6 +29,9 @@ public class Curriculum {
 	private int teacher_id;
 	private String overview;
 	private int accomodatenumber;
+	private int personNubmber;	//该课程已经包含的人数。
+	
+
 	private int weekday;
 	private int whichClass;
 	
@@ -41,7 +44,7 @@ public class Curriculum {
 	 * @param whichCourt
 	 * @param time
 	 */
-	public Curriculum(int id, String name, int state, int whichCourt,int teacher_id, String overview,int accomodatenumber,int weekday,int whichClass) {
+	public Curriculum(int id, String name, int state, int whichCourt,int teacher_id, String overview,int accomodatenumber,int personNumber ,int weekday,int whichClass) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -50,6 +53,7 @@ public class Curriculum {
 		this.teacher_id = teacher_id;
 		this.overview = overview;
 		this.accomodatenumber = accomodatenumber;
+		this.personNubmber = personNumber;
 		this.weekday = weekday;
 		this.whichClass = whichClass;
 	}
@@ -166,6 +170,25 @@ public class Curriculum {
 	public void setWhichCourt(int whichCourt) {
 		this.whichCourt = whichCourt;
 	}
+	
+	/**
+	 * @return the personNubmber
+	 */
+	public int getPersonNubmber() {
+		return personNubmber;
+	}
+
+
+
+	/**
+	 * @param personNubmber the personNubmber to set
+	 */
+	public void setPersonNubmber(int personNubmber) {
+		this.personNubmber = personNubmber;
+	}
+	
+	
+	
 	
 	/**
 	 * @author dell

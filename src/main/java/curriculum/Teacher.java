@@ -83,6 +83,7 @@ public class Teacher extends User{
 					Integer.parseInt(resultSet.getString("teacher_id")),
 					resultSet.getString("curriculum_overview"), 
 					Integer.parseInt(resultSet.getString("accomodatenumber")),
+					Integer.parseInt(resultSet.getString("personnumber")),
 					Integer.parseInt(resultSet.getString("weekday")), Integer.parseInt(resultSet.getString("whichclass"))));
 		}
 		

@@ -44,7 +44,9 @@ public class Administrator extends User{
 			curriculumsList.add(new Curriculum(Integer.parseInt(resultSet.getString("curriculum_id")), resultSet.getString("curriculum_name"), 
 					Integer.parseInt(resultSet.getString("curriculum_state")), Integer.parseInt(resultSet.getString("whichCourt")),
 					Integer.parseInt(resultSet.getString("teacher_id")),resultSet.getString("curriculum_overview"),
-					Integer.parseInt(resultSet.getString("accomodatenumber")),Integer.parseInt(resultSet.getString("weekday")),
+					Integer.parseInt(resultSet.getString("accomodatenumber")),
+					Integer.parseInt(resultSet.getString("personnumber")),
+					Integer.parseInt(resultSet.getString("weekday")),
 					Integer.parseInt(resultSet.getString("whichclass"))));
 		}
 		
@@ -90,7 +92,7 @@ public class Administrator extends User{
 		if(curriculums == null)
 			writer.println("课程为空！");
 		else {
-			writer.println("<table><tr><td>课程ID</td><td>课程名称</td><td>课程状态</td><td>球场</td><td>老师ID</td><td>课程简介</td><td>可容纳学生数量</td><td>周几</td><td>课程</td><td>选项</td></tr>");
+			writer.println("<table><tr><td>课程ID</td><td>课程名称</td><td>课程状态</td><td>球场</td><td>老师ID</td><td>课程简介</td><td>可容纳学生数量</td><td>已有人数</td><td>周几</td><td>课程</td><td>选项</td></tr>");
 			for(int i = 0;i < curriculums.length;i++)
 			{
 				System.out.println(curriculums[i].getId());
@@ -102,6 +104,7 @@ public class Administrator extends User{
 						+ "<td>" + curriculums[i].getTeacher_id() + "</td>"
 						+ "<td>" + curriculums[i].getOverview() + "</td>"
 						+ "<td>" + curriculums[i].getAccomodatenumber() + "</td>"
+						+ "<td>" + curriculums[i].getPersonNubmber() + "</td>"
 						+ "<td>" + curriculums[i].getWeekday() + "</td>"
 						+ "<td>" + curriculums[i].getWhichClass() + "</td>"
 						+ "<td>" + confirmState(curriculums[i].getState(), curriculums[i].getId()) + "</td>"
